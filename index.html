@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JURI 4170 · Fintech, Payments, and Digital Assets</title>
+<style>
+:root {
+  --bg:       #f4f4f4;
+  --panel:    #ffffff;
+  --panel-2:  #fafafa;
+  --warm:     #f6f4ef;
+  --briefing: #fbf7ee;
+  --ink:    #1a1a1a;
+  --ink-2:  #3a3a3a;
+  --ink-3:  #444444;
+  --mute-1: #666666;
+  --mute-2: #777777;
+  --mute-3: #999999;
+  --mute-4: #bbbbbb;
+  --mute-5: #cccccc;
+  --line:   #e5e5e5;
+  --line-2: #ececec;
+  --line-3: #d4d4d4;
+  --line-4: #c8c8c8;
+  --amber-rule: #b78900;
+  --amber-line: #ead9a8;
+  --amber-ink:  #5a4400;
+  --amber-ink-2:#3a2f0a;
+  --amber-mute: #8a6500;
+  --cat-denim:      oklch(0.60 0.072 250);
+  --cat-denim-fill: oklch(0.965 0.018 250);
+  --cat-denim-line: oklch(0.86 0.038 250);
+  --cat-denim-ink:  oklch(0.44 0.064 250);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --rail-bg:     #ece5d8;
+  --rail-border: #e3dccd;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 40px 40px 64px;
+}
+
+.site-card {
+  max-width: 1080px;
+  margin: 0 auto;
+  background: var(--panel);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+  border-top: 1px solid var(--ink);
+  display: grid;
+  grid-template-columns: 272px 1fr;
+  min-height: calc(100vh - 104px);
+}
+
+.rail {
+  background: var(--rail-bg);
+  border-right: 1px solid var(--rail-border);
+  padding: 38px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.rail-wordmark {
+  font-size: 44px;
+  font-weight: var(--weight-bold);
+  line-height: 0.92;
+  letter-spacing: -1.8px;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.rail-subtitle {
+  font-size: 13px;
+  font-weight: var(--weight-semibold);
+  color: var(--ink-3);
+  line-height: 1.35;
+  margin-bottom: 5px;
+}
+
+.rail-meta {
+  font-size: 11px;
+  color: var(--mute-2);
+  margin-bottom: 28px;
+}
+
+.rail-nav {
+  border-top: 1px solid var(--rail-border);
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.nav-item {
+  display: block;
+  padding: 7px 0;
+  font-size: 13px;
+  font-weight: var(--weight-regular);
+  color: var(--mute-2);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: left;
+  font-family: var(--font-sans);
+  transition: color 0.15s;
+}
+.nav-item:hover { color: var(--ink); }
+.nav-item.active { color: var(--ink); font-weight: var(--weight-bold); }
+
+.rail-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--rail-border);
+}
+.rail-footer-eyebrow {
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--mute-2);
+  margin-bottom: 4px;
+}
+.rail-footer-body {
+  font-size: 12px;
+  color: var(--ink-3);
+  line-height: 1.55;
+}
+
+.main {
+  padding: 38px 42px 48px;
+  min-width: 0;
+}
+
+.page { display: none; }
+.page.active { display: block; }
+
+.page-eyebrow {
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--mute-2);
+  margin-bottom: 6px;
+}
+
+.page-h1 {
+  font-size: 38px;
+  font-weight: var(--weight-bold);
+  letter-spacing: -1.1px;
+  line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.page-intro {
+  font-size: 14px;
+  color: var(--ink-3);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+
+/* OVERVIEW */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 26px;
+  margin-bottom: 36px;
+}
+
+.next-class-card {
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--amber-rule);
+  padding: 22px 22px 20px;
+}
+
+.card-eyebrow-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.card-eyebrow {
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--mute-2);
+}
+
+.pill-amber {
+  background: var(--briefing);
+  border: 1px solid var(--amber-line);
+  color: var(--amber-ink);
+  font-size: 10px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.pill-outline {
+  background: var(--panel);
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: var(--weight-bold);
+  color: var(--ink);
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.card-body {
+  font-size: 14px;
+  color: var(--ink-3);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.card-link {
+  font-size: 10px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--mute-3);
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.card-link:hover { text-decoration-color: var(--ink); }
+
+.info-card {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  padding: 0;
+}
+.info-card-header {
+  padding: 14px 18px 10px;
+  border-bottom: 1px solid var(--line-2);
+}
+.info-item {
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.info-item + .info-item { border-top: 1px solid var(--line-2); }
+.info-label {
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--mute-3);
+}
+.info-value {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+}
+
+.section-label {
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--mute-2);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2px;
+}
+
+.session-row {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 0;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-2);
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.session-row:hover { background: var(--panel-2); margin: 0 -8px; padding: 12px 8px; }
+.session-row.current { background: var(--briefing); border-left: 4px solid var(--amber-rule); margin: 0 -8px; padding: 12px 8px; }
+
+.session-date {
+  font-size: 12px;
+  font-weight: var(--weight-semibold);
+  color: var(--mute-1);
+}
+.session-row.current .session-date { color: var(--amber-ink); }
+
+.session-title {
+  font-size: 13px;
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.session-sub {
+  font-size: 11px;
+  color: var(--mute-2);
+}
+
+.session-arrow {
+  font-size: 14px;
+  color: var(--mute-3);
+}
+
+/* SYLLABUS */
+.syllabus-section {
+  border-top: 1px solid var(--line);
+  padding: 22px 0;
+}
+
+.syl-heading {
+  font-size: 13px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.3px;
+  text-transform: none;
+  color: var(--ink);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+  display: inline-block;
+}
+
+.syl-body {
+  font-size: 14px;
+  color: var(--ink-3);
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.syl-body p + p { margin-top: 0.8rem; }
+
+.syl-outcome-row {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+  align-items: start;
+}
+.syl-outcome-num {
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  color: var(--mute-3);
+  padding-top: 1px;
+}
+.syl-outcome-text {
+  font-size: 14px;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+
+.grade-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line-2);
+  font-size: 13px;
+}
+.grade-row:last-child { border-bottom: none; }
+.grade-pct {
+  font-weight: var(--weight-bold);
+  color: var(--ink);
+}
+
+.policy-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.book-card {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--ink);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.book-title {
+  font-size: 13px;
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+.book-meta {
+  font-size: 12px;
+  color: var(--mute-2);
+}
+
+/* COURSEWORK */
+.group-header {
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--mute-2);
+  padding: 16px 0 8px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2px;
+}
+.group-header:first-child { padding-top: 0; }
+
+/* SESSION DETAIL */
+#session-detail { display: none; }
+#session-detail.active { display: block; }
+
+.back-link {
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  color: var(--mute-2);
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.back-link:hover { color: var(--ink); }
+
+.detail-chips {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.chip {
+  font-size: 10px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: var(--panel-2);
+  border: 1px solid var(--line-3);
+  color: var(--mute-2);
+}
+.chip.current {
+  background: var(--briefing);
+  border-color: var(--amber-line);
+  color: var(--amber-ink);
+}
+
+.detail-title {
+  font-size: 26px;
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.6px;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.detail-summary {
+  font-size: 14px;
+  color: var(--ink-3);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 28px;
+}
+
+.material-group { margin-bottom: 24px; }
+.material-group-label {
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--mute-2);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.doc-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line-2);
+}
+.doc-row:last-child { border-bottom: none; }
+
+.paper-glyph {
+  width: 22px; height: 26px;
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line-3);
+  flex-shrink: 0;
+}
+.paper-glyph::before {
+  content: '';
+  position: absolute;
+  top: -1px; right: -1px;
+  width: 7px; height: 7px;
+  background: var(--bg);
+  border-left: 1px solid var(--line-3);
+  border-bottom: 1px solid var(--line-3);
+}
+.paper-glyph::after {
+  content: '';
+  position: absolute;
+  bottom: 5px; left: 4px; right: 4px;
+  height: 1px; background: var(--line-3);
+  box-shadow: 0 -4px 0 var(--line-3), 0 -8px 0 var(--line-3);
+}
+
+.doc-title { font-size: 13px; color: var(--ink); font-weight: var(--weight-medium); }
+.doc-meta  { font-size: 11px; color: var(--mute-2); }
+.doc-action {
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  color: var(--mute-2);
+  text-decoration: none;
+  cursor: pointer;
+}
+.doc-action:hover { color: var(--ink); }
+
+.empty-state {
+  border: 1px dashed var(--line-4);
+  padding: 28px 24px;
+  color: var(--mute-2);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ANNOUNCEMENTS */
+.announcement-item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.announcement-item:first-child { border-top: 1px solid var(--line); }
+
+.ann-date {
+  font-size: 12px;
+  font-weight: var(--weight-semibold);
+  color: var(--mute-1);
+  padding-top: 1px;
+}
+.ann-tag {
+  display: inline-block;
+  background: var(--briefing);
+  border: 1px solid var(--amber-line);
+  color: var(--amber-ink);
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-bottom: 6px;
+}
+.ann-title {
+  font-size: 14px;
+  font-weight: var(--weight-bold);
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.ann-body {
+  font-size: 13px;
+  color: var(--ink-3);
+  line-height: 1.65;
+}
+
+/* CONTACT */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.contact-card {
+  border: 1px solid var(--line);
+  padding: 20px;
+}
+.contact-card-eyebrow {
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--mute-2);
+  margin-bottom: 12px;
+}
+.contact-name {
+  font-size: 16px;
+  font-weight: var(--weight-bold);
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.contact-role {
+  font-size: 12px;
+  color: var(--mute-2);
+  margin-bottom: 14px;
+}
+.contact-detail {
+  font-size: 13px;
+  color: var(--ink-3);
+  line-height: 1.9;
+}
+.contact-detail strong {
+  color: var(--ink);
+  font-weight: var(--weight-semibold);
+  min-width: 60px;
+  display: inline-block;
+}
+.contact-section {
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+}
+.contact-section-title {
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--mute-2);
+  margin-bottom: 10px;
+}
+.contact-section-body {
+  font-size: 14px;
+  color: var(--ink-3);
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+/* FOOTER */
+.site-footer {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line);
+  padding: 14px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-left  { font-size: 11px; color: var(--mute-3); }
+.footer-right { font-size: 11px; color: var(--mute-4); }
+
+@media (max-width: 860px) {
+  body { padding: 0; }
+  .site-card { grid-template-columns: 1fr; min-height: 100vh; }
+  .rail { border-right: none; border-bottom: 1px solid var(--rail-border); padding: 20px 24px; }
+  .rail-wordmark { font-size: 32px; }
+  .rail-nav { flex-direction: row; flex-wrap: wrap; gap: 0; margin-top: 12px; }
+  .nav-item { padding: 6px 10px 6px 0; }
+  .rail-footer { display: none; }
+  .main { padding: 24px; }
+  .overview-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .policy-cols { grid-template-columns: 1fr; }
+  .session-row { grid-template-columns: 90px 1fr auto; }
+  .announcement-item { grid-template-columns: 80px 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="site-card">
+
+  <!-- RAIL -->
+  <nav class="rail">
+    <div class="rail-wordmark">JURI<br>4170</div>
+    <div class="rail-subtitle">Fintech, Payments,<br>and Digital Assets</div>
+    <div class="rail-meta">Fall 2026 · UGA Law</div>
+
+    <div class="rail-nav">
+      <button class="nav-item active" onclick="showPage('overview')">Overview</button>
+      <button class="nav-item" onclick="showPage('syllabus')">Syllabus</button>
+      <button class="nav-item" onclick="showPage('coursework')">Coursework</button>
+      <button class="nav-item" onclick="showPage('announcements')">Announcements</button>
+      <button class="nav-item" onclick="showPage('contact')">Contact</button>
+    </div>
+
+    <div class="rail-footer">
+      <div class="rail-footer-eyebrow">Meets</div>
+      <div class="rail-footer-body">Mondays · 10:00–11:50 AM<br>HRH - A · Prof. Erwin</div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- OVERVIEW -->
+    <div id="page-overview" class="page active">
+      <div class="page-eyebrow">Course Portal · For Enrolled Students</div>
+      <h1 class="page-h1">Overview</h1>
+      <p class="page-intro">This course examines the law and regulation of payment systems and financial technology — how money moves, the regulatory architecture that governs each method, and how to counsel clients navigating it. Everything you need for each class is posted under Coursework before we meet.</p>
+
+      <div class="overview-grid">
+        <div class="next-class-card">
+          <div class="card-eyebrow-row">
+            <span class="card-eyebrow">First Class · Mon, Aug 24</span>
+            <span class="pill-amber">Coming Up</span>
+          </div>
+          <div class="card-title">Session 1 — Introduction & Negotiable Instruments</div>
+          <div class="card-body">Course overview and the historical foundations of payments law. UCC Articles 3 and 4. Materials will be posted here before we meet.</div>
+          <span class="card-link" onclick="openSession(0)">Open session →</span>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="card-eyebrow">Course Details</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Course</div>
+            <div class="info-value">JURI 4170</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Meets</div>
+            <div class="info-value">Mondays, 10:00–11:50 AM</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Location</div>
+            <div class="info-value">HRH - A</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Final Exam</div>
+            <div class="info-value">Mon, Dec 7 · 1:30–3:30 PM · Room F</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">Schedule</div>
+      <div id="session-list-overview"></div>
+    </div>
+
+    <!-- SYLLABUS -->
+    <div id="page-syllabus" class="page">
+      <div class="page-eyebrow">JURI 4170 · Fall 2026</div>
+      <h1 class="page-h1">Syllabus</h1>
+      <p class="page-intro">An overview of the law and regulation of payment systems and financial technology — covering the legal frameworks governing how money moves, and the federal and state regulatory architecture that governs each.</p>
+
+      <div class="syllabus-section">
+        <div class="syl-heading">About the Course</div>
+        <div class="syl-body">
+          <p>The course is taught in a case-study format, modeled loosely on business school pedagogy. Each session is anchored to a real company, enforcement action, or market event. You will engage with primary sources — statutes, regulations, agency guidance, enforcement orders, and judicial decisions — rather than a casebook.</p>
+          <p>We will address uniform state laws (UCC Articles 3, 4, and 4A), applicable federal statutes and regulations (including the Electronic Fund Transfer Act, the Truth in Lending Act, the Bank Secrecy Act, and Dodd-Frank), proprietary network rules, and the overlapping jurisdictions of the CFPB, OCC, Federal Reserve, FDIC, FinCEN, and SEC.</p>
+          <p>In examining each payment method, we will consider how risk is allocated among participants, what claims and defenses arise on the underlying contracts, and how the regulatory framework shapes — and is shaped by — commercial practice.</p>
+        </div>
+      </div>
+
+      <div class="syllabus-section">
+        <div class="syl-heading">Objectives</div>
+        <div>
+          <div class="syl-outcome-row">
+            <div class="syl-outcome-num">01</div>
+            <div class="syl-outcome-text">Navigate a new regulatory regime and identify the statutes, agencies, and frameworks that govern a given payment method or product.</div>
+          </div>
+          <div class="syl-outcome-row">
+            <div class="syl-outcome-num">02</div>
+            <div class="syl-outcome-text">Communicate legal analysis in a way that is actionable and helpful for a client — not just accurate, but useful.</div>
+          </div>
+          <div class="syl-outcome-row">
+            <div class="syl-outcome-num">03</div>
+            <div class="syl-outcome-text">Understand the difference between giving an answer and giving advice, and practice reasoning through regulatory ambiguity.</div>
+          </div>
+          <div class="syl-outcome-row">
+            <div class="syl-outcome-num">04</div>
+            <div class="syl-outcome-text">Develop the perspective of a regulatory lawyer — especially an in-house regulatory lawyer — working at the intersection of law, technology, and financial services.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syllabus-section">
+        <div class="syl-heading">Required Materials</div>
+        <div class="book-card">
+          <div class="book-title"><a href="https://www.amazon.com/dp/B074PB7T1K?lv=shuf&channelId=500&plpRedirect=mhFallback" target="_blank" style="color:inherit;text-decoration:underline;text-decoration-color:var(--mute-3);text-underline-offset:2px;">Payments Systems in the U.S.: A Guide for the Payments Professional (3rd ed.)</a></div>
+          <div class="book-meta">Carol Coye Benson, Scott Loftesness, and Russ Jones · <a href="https://www.amazon.com/dp/B074PB7T1K?lv=shuf&channelId=500&plpRedirect=mhFallback" target="_blank" style="color:var(--mute-2);text-decoration:underline;text-underline-offset:2px;">Buy on Amazon →</a></div>
+        </div>
+        <div class="book-card">
+          <div class="book-title"><a href="https://www.amazon.com/Comprehensive-Commercial-Law-Supplement-Supplements/dp/B0FHFMRYN7/ref=tmm_pap_swatch_0?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.EHIJckn5KVI5XgVBwrJdKzK8P3I2NBgwSkTyhRXEQvCq6wWVeaeJ9ycKOqvZdpnVPg09X6v8-03Iu1pcrxuWT5YA69UWrBIMX9N9TEpESIk._QIZtkYyw9U2PHRRm5_p51Ay9XCnT0ppiRvTUCfynSs&qid=1784243408&sr=1-1" target="_blank" style="color:inherit;text-decoration:underline;text-decoration-color:var(--mute-3);text-underline-offset:2px;">Aspen's Comprehensive Commercial Law: 2025 Statutory Supplement</a></div>
+          <div class="book-meta">Recommended for print access to statutes · <a href="https://www.amazon.com/Comprehensive-Commercial-Law-Supplement-Supplements/dp/B0FHFMRYN7/ref=tmm_pap_swatch_0?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.EHIJckn5KVI5XgVBwrJdKzK8P3I2NBgwSkTyhRXEQvCq6wWVeaeJ9ycKOqvZdpnVPg09X6v8-03Iu1pcrxuWT5YA69UWrBIMX9N9TEpESIk._QIZtkYyw9U2PHRRm5_p51Ay9XCnT0ppiRvTUCfynSs&qid=1784243408&sr=1-1" target="_blank" style="color:var(--mute-2);text-decoration:underline;text-underline-offset:2px;">Buy on Amazon →</a></div>
+        </div>
+        <div style="margin-top:14px;" class="syl-body">
+          <p>While there is no casebook, you will need to get <em>Payments Systems in the U.S.: A Guide for the Payments Professional</em> (3rd ed.) by Carol Coye Benson, Scott Loftesness, and Russ Jones. You can get this off of Amazon. This is a great foundational reference guide for payments, and will help supplement the other course materials and provide a simple to understand baseline understanding of different payment systems.</p>
+          <p>Lastly, you will need to be able to access and review statutes, regs, and other materials. If you have Westlaw or Lexis access, you should have what you need. But, if you like this in a print version (like me), I suggest Aspen's Comprehensive Commercial Law: 2025 Statutory Supplement. This is also available on Amazon.</p>
+        </div>
+      </div>
+
+      <div class="syllabus-section">
+        <div class="syl-heading">Grading</div>
+        <div style="max-width:360px;">
+          <div class="grade-row"><span>Final Exam</span><span class="grade-pct">Primary</span></div>
+          <div class="grade-row"><span>Class Participation</span><span class="grade-pct">Component</span></div>
+        </div>
+        <div style="margin-top:14px;" class="syl-body">The participation assessment reflects quality of engagement, not quantity of speaking. Exemplary participation may raise a grade; numerous absences or lack of preparation may lower one. The instructor reserves discretion on both.</div>
+      </div>
+
+      <div class="syllabus-section">
+        <div class="policy-cols">
+          <div>
+            <div class="syl-heading">Attendance</div>
+            <div class="syl-body">Class attendance is required. Per school policy, up to two absences are permitted without penalty. More than two absences will prompt a conversation before any action is taken. If you are unsure of your absence count, ask.</div>
+          </div>
+          <div>
+            <div class="syl-heading">Participation</div>
+            <div class="syl-body">Adequate preparation means reading the assigned materials before class and thinking carefully about the discussion questions. Come ready to take a position and defend it — not just to report what the materials say. You may receive a role assignment before class (e.g., counsel for a client, a regulator, a skeptical senior partner). If assigned a role, orient your preparation around it.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syllabus-section">
+        <div class="policy-cols">
+          <div>
+            <div class="syl-heading">Honor Code</div>
+            <div class="syl-body">All work is subject to the University of Georgia Law School Honor Code and Plagiarism Policy, and the UGA Non-Discrimination and Anti-Harassment Policy.</div>
+          </div>
+          <div>
+            <div class="syl-heading">Mental Health &amp; Wellness</div>
+            <div class="syl-body">If you or someone you know needs assistance, contact Chantelle Tickles, Director of Student Affairs, at 706-542-5167 or Chantelle.Tickles@uga.edu. Student Care and Outreach is also available at 706-542-7774 or sco.uga.edu.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syllabus-section">
+        <div class="syl-heading">Generative AI</div>
+        <div class="syl-body">
+          <p>Generative AI may not be used as part of this class. AI is a powerful tool, but one of the real dangers is that it lets you conclude too early that you understand something — and it hallucinates in ways you're likely not yet equipped to catch. That judgment only comes from learning to read, interpret, synthesize, and communicate legal materials yourself. This course is nominally about payments law, but that skill is really what it's about.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COURSEWORK -->
+    <div id="page-coursework" class="page">
+      <div id="coursework-list">
+        <div class="page-eyebrow">13 Sessions · Mondays · Fall 2026</div>
+        <h1 class="page-h1">Coursework</h1>
+        <p class="page-intro">Reading packets, documents, and any materials for each session are posted here before we meet. Click a session to see what's been posted.</p>
+        <div id="session-list-coursework"></div>
+      </div>
+      <div id="session-detail">
+        <span class="back-link" onclick="closeSession()">← All Sessions</span>
+        <div id="detail-content"></div>
+      </div>
+    </div>
+
+    <!-- ANNOUNCEMENTS -->
+    <div id="page-announcements" class="page">
+      <div class="page-eyebrow">Notices · Newest First</div>
+      <h1 class="page-h1">Announcements</h1>
+      <div style="margin-top: 8px;">
+        <div class="announcement-item">
+          <div class="ann-date">Jul 16</div>
+          <div>
+            <div class="ann-tag">New</div>
+            <div class="ann-title">Course Website Live</div>
+            <div class="ann-body">Welcome to JURI 4170. This site will be your home for all course materials throughout the semester. Session 1 materials will be posted here before our first class on Monday, August 24. In the meantime, review the Syllabus page and get the required book — Payments Systems in the U.S. (3rd ed.) — before we meet.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="page-contact" class="page">
+      <div class="page-eyebrow">Instructor · Office Hours · Reaching Me</div>
+      <h1 class="page-h1">Contact</h1>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-card-eyebrow">Instructor</div>
+          <div class="contact-name">Prof. Kevin Erwin</div>
+          <div class="contact-role">Adjunct Professor of Law · University of Georgia</div>
+          <div class="contact-detail">
+            <strong>Email</strong> kevinerwin@me.com<br>
+            <strong>Phone</strong> (678) 230-9540<br>
+            <strong>Office Hours</strong> Before or after class — this is honestly the best way to reach me
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-eyebrow">Background</div>
+          <div class="contact-name">About Prof. Erwin</div>
+          <div class="contact-role">Director of Regulatory Legal &amp; Financial Services Compliance · Apple</div>
+          <div class="contact-detail" style="font-size:12px; color: var(--mute-1); line-height:1.7;">In-house attorney at Apple leading global regulatory legal and compliance for Apple Pay, Apple Card, Apple Cash, and Apple Savings. Research interests center on payments law, fintech regulation, BSA/AML, card network rules, and the legal treatment of digital assets and stablecoins. UGA Law JD 2009.</div>
+        </div>
+      </div>
+
+      <div class="contact-section">
+        <div class="contact-section-title">Reaching Me</div>
+        <div class="contact-section-body">Email is fine for straightforward questions. For anything substantive about course content or assignments, before or after class is better — that way the whole section benefits from the answer. If something is urgent, text is faster than email.</div>
+      </div>
+
+      <div class="contact-section">
+        <div class="contact-section-title">Class Schedule</div>
+        <div class="contact-section-body">Mondays, 10:00–11:50 AM in HRH - A. First class August 24. No class September 7 (Labor Day). Final exam December 7, 1:30–3:30 PM in Room F. Any changes will be posted to Announcements.</div>
+      </div>
+
+      <div class="contact-section">
+        <div class="contact-section-title">Student Resources</div>
+        <div class="contact-section-body">For personal or academic difficulties, contact Chantelle Tickles, Director of Student Affairs, at 706-542-5167 or Chantelle.Tickles@uga.edu. Student Care and Outreach: 706-542-7774 or sco.uga.edu. Mental health and wellness resources are available at uhs.uga.edu/bewelluga.</div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-left">JURI 4170 · Fintech, Payments, and Digital Assets · UGA School of Law · Fall 2026</span>
+    <span class="footer-right">payments.kevinerwin.com</span>
+  </footer>
+
+</div>
+
+<script>
+const sessions = [
+  { n:1,  date:'Mon, Aug 24', status:'upcoming', title:'Introduction & Negotiable Instruments',         summary:'Course overview and the historical foundations of payments law. We map the payment stack at a high level, then turn to the foundational law of paper-based payment — checks, drafts, and the holder-in-due-course doctrine. UCC Articles 3 and 4.' },
+  { n:2,  date:'Mon, Aug 31', status:'upcoming', title:'The Federal Reserve & Payment Rails',           summary:'The Federal Reserve\'s role in the U.S. payments system. Fedwire, FedACH, and FedNow — how real-time gross settlement works, and the regulatory and governance structure around systemically important payment systems.' },
+  { n:3,  date:'Mon, Sep 14', status:'upcoming', title:'Wire Transfers & UCC Article 4A',              summary:'Funds transfers under UCC Article 4A — the governing framework for large-value wire transfers. The "first-leg" doctrine under Reg E, interplay with CHIPS and Fedwire, and the allocation of loss when something goes wrong.', note:'No class Sep 7 — Labor Day' },
+  { n:4,  date:'Mon, Sep 21', status:'upcoming', title:'P2P Transfers & Regulation E',                 summary:'The Electronic Fund Transfer Act and Regulation E. Consumer rights and error resolution in the era of Venmo, Zelle, and Cash App. Liability allocation, the prepaid card rule, and open questions about P2P fraud.' },
+  { n:5,  date:'Mon, Sep 28', status:'upcoming', title:'Card Networks I — The Durbin Amendment',       summary:'The four-party card model, interchange economics, and the Durbin Amendment to Dodd-Frank. How price controls on debit interchange reshaped the card market, and the ongoing litigation around credit card network fees.' },
+  { n:6,  date:'Mon, Oct 5',  status:'upcoming', title:'Card Networks II — Mobile Wallets',            summary:'Digital wallets — Apple Pay, Google Pay, and their successors. Tokenization architecture, the pass-through vs. staged wallet distinction, and the open regulatory and competition questions around platform-controlled NFC access.' },
+  { n:7,  date:'Mon, Oct 12', status:'upcoming', title:'ACH System & NACHA Rules',                     summary:'The ACH network and NACHA Operating Rules as a form of private law. Same-day ACH, return-rate obligations, and how the rule framework allocates liability between originators, ODFIs, RDFIs, and receivers.' },
+  { n:8,  date:'Mon, Oct 19', status:'upcoming', title:'CFPB & Consumer Protection',                   summary:'The Consumer Financial Protection Bureau — its structure, supervisory authority, and enforcement posture. UDAAP as the regulator\'s Swiss Army knife. Recent enforcement actions in the payments space.' },
+  { n:9,  date:'Mon, Oct 26', status:'upcoming', title:'Money Transmission & Cross-Border Payments',   summary:'State money-transmission licensing regimes and the CSBS model law. Multi-state compliance, nexus, exemptions, and the bank-partnership model. The Remittance Transfer Rule under Reg E. Case study: the Wise multi-state consent order.' },
+  { n:10, date:'Mon, Nov 2',  status:'upcoming', title:'Marketplace Lending & BNPL',                   summary:'The true-lender doctrine, the Madden decision, and the evolving bank-partnership credit market. Buy Now Pay Later products — how they work, whether Reg Z applies, and what CFPB guidance and proposed rules say about them.' },
+  { n:11, date:'Mon, Nov 9',  status:'upcoming', title:'AML, BSA & Sanctions Compliance',              summary:'Bank Secrecy Act obligations, FinCEN rules, and OFAC sanctions programs as applied to payment companies. What a compliance program actually looks like — policies, procedures, transaction monitoring, and the cost of getting it wrong.' },
+  { n:12, date:'Mon, Nov 16', status:'upcoming', title:'Crypto, Digital Assets & UCC Article 12',      summary:'The legal status of digital assets under newly enacted UCC Article 12. The SEC vs. CFTC jurisdictional dispute. Stablecoin frameworks and pending federal legislation. How existing payments law maps — and doesn\'t map — onto blockchain-based systems.' },
+  { n:13, date:'Mon, Nov 23', status:'upcoming', title:'Synthesis & Regulatory Practice',              summary:'We step back from individual frameworks to look at the whole. How do you advise a client launching a new payments product? What does a regulatory risk assessment look like in practice? We close with a discussion of what it means to practice in this space — and where it\'s heading.' },
+];
+
+function renderSessionRows(containerId, clickable) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+
+  let lastStatus = null;
+  let html = '';
+
+  sessions.forEach((s, i) => {
+    if (clickable && s.status !== lastStatus) {
+      const labels = { held: 'Held', current: 'This Week', upcoming: 'Upcoming' };
+      html += `<div class="group-header">${labels[s.status]}</div>`;
+      lastStatus = s.status;
+    }
+
+    const rowClass = `session-row${s.status === 'current' ? ' current' : ''}`;
+    const onclick = clickable
+      ? `onclick="openSession(${i})"`
+      : `onclick="showPage('coursework');openSession(${i})"`;
+
+    const subText = s.note ? s.note : (s.status === 'upcoming' ? 'Materials to come' : '');
+
+    html += `
+      <div class="${rowClass}" ${onclick}>
+        <div class="session-date">${s.date}</div>
+        <div>
+          <div class="session-title">${s.n < 10 ? '0' + s.n : s.n} — ${s.title}</div>
+          ${subText ? `<div class="session-sub">${subText}</div>` : ''}
+        </div>
+        <div class="session-arrow">›</div>
+      </div>`;
+  });
+
+  el.innerHTML = html;
+}
+
+function openSession(i) {
+  const s = sessions[i];
+  const statusLabels = { held: 'Held', current: 'This Week', upcoming: 'Upcoming' };
+
+  let html = `
+    <div class="detail-chips">
+      <span class="chip ${s.status}">${statusLabels[s.status]}</span>
+      <span class="chip">${s.date}</span>
+      <span class="chip">10:00–11:50 AM · HRH - A</span>
+    </div>
+    <div class="detail-title">${s.n < 10 ? '0' + s.n : s.n} — ${s.title}</div>
+    <div class="detail-summary">${s.summary}</div>`;
+
+  const hasContent = s.docs?.length || s.links?.length || s.assignment;
+
+  if (!hasContent) {
+    html += `<div class="empty-state">Reading packets and materials for this session will be posted here before we meet.</div>`;
+  } else {
+    if (s.assignment) {
+      html += `
+        <div class="material-group">
+          <div style="border:1px solid var(--cat-denim-line);border-left:4px solid var(--cat-denim);background:var(--cat-denim-fill);padding:14px 16px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--cat-denim-ink);padding-bottom:8px;border-bottom:1px solid var(--cat-denim-line);margin-bottom:10px;">Assignment</div>
+            <div style="font-size:15px;font-weight:700;color:var(--cat-denim-ink);margin-bottom:3px;">${s.assignment.title}</div>
+            <div style="font-size:12px;color:var(--mute-1);">${s.assignment.meta}</div>
+          </div>
+        </div>`;
+    }
+    if (s.docs?.length) {
+      html += `<div class="material-group"><div class="material-group-label">Documents</div>`;
+      s.docs.forEach(d => {
+        html += `
+          <div class="doc-row">
+            <div class="paper-glyph"></div>
+            <div><div class="doc-title">${d.title}</div><div class="doc-meta">${d.meta}</div></div>
+            <span class="doc-action">Open</span>
+          </div>`;
+      });
+      html += `</div>`;
+    }
+    if (s.links?.length) {
+      html += `<div class="material-group"><div class="material-group-label">Links &amp; Sources</div>`;
+      s.links.forEach(l => {
+        html += `
+          <div class="doc-row">
+            <div class="paper-glyph"></div>
+            <div><div class="doc-title">${l.title}</div><div class="doc-meta">${l.kind}</div></div>
+            <span class="doc-action">Visit →</span>
+          </div>`;
+      });
+      html += `</div>`;
+    }
+  }
+
+  document.getElementById('detail-content').innerHTML = html;
+  document.getElementById('coursework-list').style.display = 'none';
+  document.getElementById('session-detail').style.display = 'block';
+}
+
+function closeSession() {
+  document.getElementById('coursework-list').style.display = 'block';
+  document.getElementById('session-detail').style.display = 'none';
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick')?.includes(id)) n.classList.add('active');
+  });
+  if (id === 'coursework') {
+    document.getElementById('coursework-list').style.display = 'block';
+    document.getElementById('session-detail').style.display = 'none';
+  }
+}
+
+renderSessionRows('session-list-overview', false);
+renderSessionRows('session-list-coursework', true);
+</script>
+
+</body>
+</html>
