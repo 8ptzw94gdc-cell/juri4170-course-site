@@ -715,9 +715,9 @@ body {
             <span class="card-eyebrow">Next Class · Mon, Sep 14</span>
             <span class="pill-amber">Coming Up</span>
           </div>
-          <div class="card-title">Session 3 — Wire Transfers & UCC Article 4A</div>
-          <div class="card-body">Funds transfers under UCC Article 4A — the governing framework for large-value wire transfers. Materials will be posted here before we meet.</div>
-          <span class="card-link" onclick="openSession(2)">Open session →</span>
+          <div class="card-title">Session 3 — ACH System & NACHA Rules</div>
+          <div class="card-body">The ACH network and NACHA Operating Rules as a form of private law. Materials will be posted here before we meet.</div>
+          <span class="card-link" onclick="openSession(3)">Open session →</span>
         </div>
 
         <div class="info-card">
@@ -932,11 +932,12 @@ body {
 const sessions = [
   { n:1,  date:'Mon, Aug 24', status:'previous', title:'Introductions & a Brief History of Payments',  summary:'Course overview and the historical foundations of payments law. We map the payment stack at a high level and trace how money has moved throughout history up to the modern era.', presentation:{ url:'/materials/session-01/presentation.pdf' } },
   { n:2,  date:'Mon, Aug 31', status:'previous', title:'Negotiable Instruments & Holder in Due Course', summary:'The foundational law of paper-based payment — checks, drafts, and the holder-in-due-course doctrine. UCC Articles 3 and 4. The FTC Holder Rule and its application to consumer credit transactions.', presentation:{ url:'/materials/session-02/presentation.pdf' }, assignment:{ title:'Case Study — The Holder Rule', meta:'Complete before class', url:'/materials/session-02/case-study-holder-rule.pdf', materials:[ { title:'FTC Advisory Opinion on the Holder Rule (2012)', meta:'Federal Trade Commission · PDF', url:'/materials/session-02/reading-ftc-advisory-opinion-2012.pdf' }, { title:'Holder in Due Course — Textbook Excerpt', meta:'Maggs · PDF', url:'/materials/session-02/reading-maggs-holder-in-due-course.pdf' }, { title:'NCLC — Holder Rule Excerpt', meta:'National Consumer Law Center · PDF', url:'/materials/session-02/reading-nclc-holder-rule.pdf' } ] } },
-  { n:3,  date:'Mon, Sep 14', status:'upcoming', title:'Wire Transfers & UCC Article 4A',              summary:'Funds transfers under UCC Article 4A — the governing framework for large-value wire transfers. The "first-leg" doctrine under Reg E, interplay with CHIPS and Fedwire, and the allocation of loss when something goes wrong.', note:'No class Sep 7 — Labor Day' },
+  { n:null,date:'Mon, Sep 7',  status:'holiday', title:'No class — Labor Day',                         summary:'' },
+  { n:3,  date:'Mon, Sep 14', status:'upcoming', title:'ACH System & NACHA Rules',                     summary:'The ACH network and NACHA Operating Rules as a form of private law. Same-day ACH, return-rate obligations, and how the rule framework allocates liability between originators, ODFIs, RDFIs, and receivers.' },
   { n:4,  date:'Mon, Sep 21', status:'upcoming', title:'P2P Transfers & Regulation E',                 summary:'The Electronic Fund Transfer Act and Regulation E. Consumer rights and error resolution in the era of Venmo, Zelle, and Cash App. Liability allocation, the prepaid card rule, and open questions about P2P fraud.' },
-  { n:5,  date:'Mon, Sep 28', status:'upcoming', title:'Card Networks I — The Durbin Amendment',       summary:'The four-party card model, interchange economics, and the Durbin Amendment to Dodd-Frank. How price controls on debit interchange reshaped the card market, and the ongoing litigation around credit card network fees.' },
-  { n:6,  date:'Mon, Oct 5',  status:'upcoming', title:'Card Networks II — Mobile Wallets',            summary:'Digital wallets — Apple Pay, Google Pay, and their successors. Tokenization architecture, the pass-through vs. staged wallet distinction, and the open regulatory and competition questions around platform-controlled NFC access.' },
-  { n:7,  date:'Mon, Oct 12', status:'upcoming', title:'ACH System & NACHA Rules',                     summary:'The ACH network and NACHA Operating Rules as a form of private law. Same-day ACH, return-rate obligations, and how the rule framework allocates liability between originators, ODFIs, RDFIs, and receivers.' },
+  { n:5,  date:'Mon, Sep 28', status:'upcoming', title:'Wire Transfers & UCC Article 4A',              summary:'Funds transfers under UCC Article 4A — the governing framework for large-value wire transfers. The "first-leg" doctrine under Reg E, interplay with CHIPS and Fedwire, and the allocation of loss when something goes wrong.' },
+  { n:6,  date:'Mon, Oct 5',  status:'upcoming', title:'Card Networks I — The Durbin Amendment',       summary:'The four-party card model, interchange economics, and the Durbin Amendment to Dodd-Frank. How price controls on debit interchange reshaped the card market, and the ongoing litigation around credit card network fees.' },
+  { n:7,  date:'Mon, Oct 12', status:'upcoming', title:'Card Networks II — Mobile Wallets',            summary:'Digital wallets — Apple Pay, Google Pay, and their successors. Tokenization architecture, the pass-through vs. staged wallet distinction, and the open regulatory and competition questions around platform-controlled NFC access.' },
   { n:8,  date:'Mon, Oct 19', status:'upcoming', title:'CFPB & Consumer Protection',                   summary:'The Consumer Financial Protection Bureau — its structure, supervisory authority, and enforcement posture. UDAAP as the regulator\'s Swiss Army knife. Recent enforcement actions in the payments space.' },
   { n:9,  date:'Mon, Oct 26', status:'upcoming', title:'Money Transmission & Cross-Border Payments',   summary:'State money-transmission licensing regimes and the CSBS model law. Multi-state compliance, nexus, exemptions, and the bank-partnership model. The Remittance Transfer Rule under Reg E. Case study: the Wise multi-state consent order.' },
   { n:10, date:'Mon, Nov 2',  status:'upcoming', title:'Marketplace Lending & BNPL',                   summary:'The true-lender doctrine, the Madden decision, and the evolving bank-partnership credit market. Buy Now Pay Later products — how they work, whether Reg Z applies, and what CFPB guidance and proposed rules say about them.' },
@@ -959,18 +960,29 @@ function renderSessionRows(containerId, clickable) {
       lastStatus = s.status;
     }
 
+    if (s.status === 'holiday') {
+      html += `
+        <div class="session-row" style="opacity:0.35;cursor:default;" onclick="">
+          <div class="session-date">${s.date}</div>
+          <div><div class="session-title">— &nbsp;${s.title}</div></div>
+          <div></div>
+        </div>`;
+      return;
+    }
+
     const rowClass = `session-row${s.status === 'current' ? ' current' : s.status === 'previous' ? ' previous' : ''}`;
     const onclick = clickable
       ? `onclick="openSession(${i})"`
       : `onclick="showPage('coursework');openSession(${i})"`;
 
-    const subText = s.note ? s.note : (s.status === 'upcoming' ? 'Materials to come' : '');
+    const subText = s.status === 'upcoming' ? 'Materials to come' : '';
+    const numLabel = s.n !== null ? (s.n < 10 ? '0' + s.n : s.n) + ' — ' : '';
 
     html += `
       <div class="${rowClass}" ${onclick}>
         <div class="session-date">${s.date}</div>
         <div>
-          <div class="session-title">${s.n < 10 ? '0' + s.n : s.n} — ${s.title}</div>
+          <div class="session-title">${numLabel}${s.title}</div>
           ${subText ? `<div class="session-sub">${subText}</div>` : ''}
         </div>
         <div class="session-arrow">›</div>
@@ -1095,6 +1107,7 @@ renderSessionRows('session-list-coursework', true);
 
 </body>
 </html>
+
 
 
 
