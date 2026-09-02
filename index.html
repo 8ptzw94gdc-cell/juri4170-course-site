@@ -944,7 +944,7 @@ const sessions = [
   { n:1,  date:'Mon, Aug 24', status:'previous', title:'Introductions & a Brief History of Payments',  summary:'Course overview and the historical foundations of payments law. We map the payment stack at a high level and trace how money has moved throughout history up to the modern era.', presentation:{ url:'/materials/session-01/presentation.pdf' } },
   { n:2,  date:'Mon, Aug 31', status:'previous', title:'Negotiable Instruments & Holder in Due Course', summary:'The foundational law of paper-based payment — checks, drafts, and the holder-in-due-course doctrine. UCC Articles 3 and 4. The FTC Holder Rule and its application to consumer credit transactions.', presentation:{ url:'/materials/session-02/presentation.pdf' }, assignment:{ title:'Case Study — The Holder Rule', meta:'Complete before class', url:'/materials/session-02/case-study-holder-rule.pdf', materials:[ { title:'FTC Advisory Opinion on the Holder Rule (2012)', meta:'Federal Trade Commission · PDF', url:'/materials/session-02/reading-ftc-advisory-opinion-2012.pdf' }, { title:'Gregory E. Maggs, The Holder in Due Course Doctrine as a Default Rule, 32 Ga. L. Rev. 783 (1998) (Excerpt)', meta:'Law Review Article · PDF', url:'/materials/session-02/reading-maggs-holder-in-due-course.pdf' }, { title:'Jonathan Sheldon, Carolyn Carter & Deanne Loonin (National Consumer Law Center), Protecting and Improving the Best Thing the FTC Has Ever Done: The Holder Rule (Excerpt)', meta:'Law Review Article · PDF', url:'/materials/session-02/reading-nclc-holder-rule.pdf' } ] } },
   { n:null,date:'Mon, Sep 7',  status:'holiday', title:'No class — Labor Day',                         summary:'' },
-  { n:3,  date:'Mon, Sep 14', status:'upcoming', title:'ACH System & NACHA Rules',                     summary:'The ACH network and NACHA Operating Rules as a form of private law. Same-day ACH, return-rate obligations, and how the rule framework allocates liability between originators, ODFIs, RDFIs, and receivers.', docs:[ { title:'Carol Coye Benson, Scott Loftesness & Russ Jones, Payments Systems in the U.S.: A Guide for the Payments Professional, Chapter 4 — ACH (3d ed. 2017)', meta:'Required reading · Print copy' } ] },
+  { n:3,  date:'Mon, Sep 14', status:'upcoming', title:'ACH System & NACHA Rules',                     summary:'The ACH network and NACHA Operating Rules as a form of private law. Same-day ACH, return-rate obligations, and how the rule framework allocates liability between originators, ODFIs, RDFIs, and receivers.', readings:[ { title:'Carol Coye Benson, Scott Loftesness & Russ Jones, Payments Systems in the U.S.: A Guide for the Payments Professional, Chapter 4 — ACH (3d ed. 2017)' } ] },
   { n:4,  date:'Mon, Sep 21', status:'upcoming', title:'P2P Transfers & Regulation E',                 summary:'The Electronic Fund Transfer Act and Regulation E. Consumer rights and error resolution in the era of Venmo, Zelle, and Cash App. Liability allocation, the prepaid card rule, and open questions about P2P fraud.' },
   { n:5,  date:'Mon, Sep 28', status:'upcoming', title:'Wire Transfers & UCC Article 4A',              summary:'Funds transfers under UCC Article 4A — the governing framework for large-value wire transfers. The "first-leg" doctrine under Reg E, interplay with CHIPS and Fedwire, and the allocation of loss when something goes wrong.' },
   { n:6,  date:'Mon, Oct 5',  status:'upcoming', title:'Card Networks I — The Durbin Amendment',       summary:'The four-party card model, interchange economics, and the Durbin Amendment to Dodd-Frank. How price controls on debit interchange reshaped the card market, and the ongoing litigation around credit card network fees.' },
@@ -1012,7 +1012,7 @@ function openSession(i) {
     <div class="detail-title">${s.n !== null ? (s.n < 10 ? '0' + s.n : s.n) + ' — ' : ''}${s.title}</div>
     <div class="detail-summary">${s.summary}</div>`;
 
-  const hasContent = s.docs?.length || s.links?.length || s.assignment || s.presentation;
+  const hasContent = s.docs?.length || s.links?.length || s.assignment || s.presentation || s.readings?.length;
 
   if (!hasContent) {
     html += `<div class="empty-state">Reading packets and materials for this session will be posted here before we meet.</div>`;
@@ -1057,6 +1057,13 @@ function openSession(i) {
         html += `</div>`;
       }
       html += `</div></div>`;
+    }
+    if (s.readings?.length) {
+      html += `<div class="material-group"><div class="material-group-label">Required Reading</div>`;
+      s.readings.forEach(r => {
+        html += `<div style="padding:10px 0;border-bottom:1px solid var(--line-2);font-size:13px;color:var(--ink-3);line-height:1.5;">${r.title}</div>`;
+      });
+      html += `</div>`;
     }
     if (s.docs?.length) {
       html += `<div class="material-group"><div class="material-group-label">Documents</div>`;
