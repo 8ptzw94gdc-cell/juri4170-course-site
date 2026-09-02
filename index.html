@@ -1006,15 +1006,11 @@ function renderSessionRows(containerId, clickable) {
 
 function openSession(i) {
   const s = sessions[i];
-  const statusLabels = { held: 'Held', current: 'This Week', upcoming: 'Upcoming' };
-
   let html = `
     <div class="detail-chips">
-      <span class="chip ${s.status}">${statusLabels[s.status]}</span>
       <span class="chip">${s.date}</span>
-      <span class="chip">10:00–11:50 AM · HRH - A</span>
     </div>
-    <div class="detail-title">${s.n < 10 ? '0' + s.n : s.n} — ${s.title}</div>
+    <div class="detail-title">${s.n !== null ? (s.n < 10 ? '0' + s.n : s.n) + ' — ' : ''}${s.title}</div>
     <div class="detail-summary">${s.summary}</div>`;
 
   const hasContent = s.docs?.length || s.links?.length || s.assignment || s.presentation;
