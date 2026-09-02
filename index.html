@@ -710,12 +710,12 @@ body {
       <div class="overview-grid">
         <div class="next-class-card">
           <div class="card-eyebrow-row">
-            <span class="card-eyebrow">First Class · Mon, Aug 24</span>
+            <span class="card-eyebrow">Next Class · Mon, Sep 14</span>
             <span class="pill-amber">Coming Up</span>
           </div>
-          <div class="card-title">Session 1 — Introduction & Negotiable Instruments</div>
-          <div class="card-body">Course overview and the historical foundations of payments law. UCC Articles 3 and 4. Materials will be posted here before we meet.</div>
-          <span class="card-link" onclick="openSession(0)">Open session →</span>
+          <div class="card-title">Session 3 — Wire Transfers & UCC Article 4A</div>
+          <div class="card-body">Funds transfers under UCC Article 4A — the governing framework for large-value wire transfers. Materials will be posted here before we meet.</div>
+          <span class="card-link" onclick="openSession(2)">Open session →</span>
         </div>
 
         <div class="info-card">
@@ -922,8 +922,8 @@ body {
 
 <script>
 const sessions = [
-  { n:1,  date:'Mon, Aug 24', status:'upcoming', title:'Introduction & Negotiable Instruments',         summary:'Course overview and the historical foundations of payments law. We map the payment stack at a high level, then turn to the foundational law of paper-based payment — checks, drafts, and the holder-in-due-course doctrine. UCC Articles 3 and 4.' },
-  { n:2,  date:'Mon, Aug 31', status:'upcoming', title:'The Federal Reserve & Payment Rails',           summary:'The Federal Reserve\'s role in the U.S. payments system. Fedwire, FedACH, and FedNow — how real-time gross settlement works, and the regulatory and governance structure around systemically important payment systems.' },
+  { n:1,  date:'Mon, Aug 24', status:'held', title:'Introductions & a Brief History of Payments',      summary:'Course overview and the historical foundations of payments law. We map the payment stack at a high level and trace how money has moved throughout history up to the modern era.' },
+  { n:2,  date:'Mon, Aug 31', status:'held', title:'Negotiable Instruments & Holder in Due Course',    summary:'The foundational law of paper-based payment — checks, drafts, and the holder-in-due-course doctrine. UCC Articles 3 and 4. The FTC Holder Rule and its application to consumer credit transactions.', assignment:{ title:'Case Study — The Holder Rule', meta:'PDF · Complete before class', url:'/materials/session-02/case-study-holder-rule.pdf' }, docs:[ { title:'FTC Advisory Opinion on the Holder Rule (2012)', meta:'Federal Trade Commission · PDF', url:'/materials/session-02/reading-ftc-advisory-opinion-2012.pdf' }, { title:'Holder in Due Course — Textbook Excerpt', meta:'Maggs · PDF', url:'/materials/session-02/reading-maggs-holder-in-due-course.pdf' }, { title:'NCLC — Holder Rule Excerpt', meta:'National Consumer Law Center · PDF', url:'/materials/session-02/reading-nclc-holder-rule.pdf' } ] },
   { n:3,  date:'Mon, Sep 14', status:'upcoming', title:'Wire Transfers & UCC Article 4A',              summary:'Funds transfers under UCC Article 4A — the governing framework for large-value wire transfers. The "first-leg" doctrine under Reg E, interplay with CHIPS and Fedwire, and the allocation of loss when something goes wrong.', note:'No class Sep 7 — Labor Day' },
   { n:4,  date:'Mon, Sep 21', status:'upcoming', title:'P2P Transfers & Regulation E',                 summary:'The Electronic Fund Transfer Act and Regulation E. Consumer rights and error resolution in the era of Venmo, Zelle, and Cash App. Liability allocation, the prepaid card rule, and open questions about P2P fraud.' },
   { n:5,  date:'Mon, Sep 28', status:'upcoming', title:'Card Networks I — The Durbin Amendment',       summary:'The four-party card model, interchange economics, and the Durbin Amendment to Dodd-Frank. How price controls on debit interchange reshaped the card market, and the ongoing litigation around credit card network fees.' },
@@ -991,24 +991,28 @@ function openSession(i) {
     html += `<div class="empty-state">Reading packets and materials for this session will be posted here before we meet.</div>`;
   } else {
     if (s.assignment) {
+      const aTag = s.assignment.url ? `a href="${s.assignment.url}" target="_blank"` : 'div';
+      const aClose = s.assignment.url ? 'a' : 'div';
       html += `
         <div class="material-group">
-          <div style="border:1px solid var(--cat-denim-line);border-left:4px solid var(--cat-denim);background:var(--cat-denim-fill);padding:14px 16px;">
+          <${aTag} style="display:block;text-decoration:none;border:1px solid var(--cat-denim-line);border-left:4px solid var(--cat-denim);background:var(--cat-denim-fill);padding:14px 16px;cursor:${s.assignment.url ? 'pointer' : 'default'};">
             <div style="font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--cat-denim-ink);padding-bottom:8px;border-bottom:1px solid var(--cat-denim-line);margin-bottom:10px;">Assignment</div>
             <div style="font-size:15px;font-weight:700;color:var(--cat-denim-ink);margin-bottom:3px;">${s.assignment.title}</div>
-            <div style="font-size:12px;color:var(--mute-1);">${s.assignment.meta}</div>
-          </div>
+            <div style="font-size:12px;color:var(--mute-1);">${s.assignment.meta}${s.assignment.url ? ' · <span style="color:var(--cat-denim);">Open PDF →</span>' : ''}</div>
+          </${aClose}>
         </div>`;
     }
     if (s.docs?.length) {
       html += `<div class="material-group"><div class="material-group-label">Documents</div>`;
       s.docs.forEach(d => {
+        const tag = d.url ? `a href="${d.url}" target="_blank"` : 'div';
+        const tagClose = d.url ? 'a' : 'div';
         html += `
-          <div class="doc-row">
+          <${tag} class="doc-row" style="text-decoration:none;cursor:${d.url ? 'pointer' : 'default'};">
             <div class="paper-glyph"></div>
             <div><div class="doc-title">${d.title}</div><div class="doc-meta">${d.meta}</div></div>
-            <span class="doc-action">Open</span>
-          </div>`;
+            <span class="doc-action">${d.url ? 'Open →' : 'Open'}</span>
+          </${tagClose}>`;
       });
       html += `</div>`;
     }
@@ -1055,4 +1059,5 @@ renderSessionRows('session-list-coursework', true);
 
 </body>
 </html>
+
 
