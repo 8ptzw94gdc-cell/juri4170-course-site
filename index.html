@@ -712,12 +712,12 @@ body {
       <div class="overview-grid">
         <div class="next-class-card">
           <div class="card-eyebrow-row">
-            <span class="card-eyebrow">Next Class · Mon, Oct 26</span>
+            <span class="card-eyebrow">Next Class · Mon, Nov 2</span>
             <span class="pill-amber">Coming Up</span>
           </div>
-          <div class="card-title">Session 9 — Money Transmission Licensing</div>
-          <div class="card-body">This class explores money transmission regulation from three perspectives: state licensing requirements, the federal criminal statute (18 U.S.C. § 1960) that makes operating without a required state license a felony, and FinCEN regulations that require certain financial services firms to register and maintain programs to prevent money laundering. We'll work through these frameworks by tracing the early history of PayPal as it navigated each one while going public in the early 2000s. Reading packet posted under Coursework.</div>
-          <span class="card-link" onclick="openSession(9)">Open session →</span>
+          <div class="card-title">Session 10 — The Tallulah Pay Case Study</div>
+          <div class="card-body">This class applies last week's money transmission material to a client problem. Tallulah Pay, a Georgia payments app for music venues and touring acts, is preparing to go public, and its CFO says that registering with FinCEN means the company has "been fine." We'll work through five questions to test that claim. Nothing to write or turn in. The case study packet, which also includes last week's readings, is posted under Coursework.</div>
+          <span class="card-link" onclick="openSession(10)">Open session →</span>
         </div>
 
         <div class="info-card">
@@ -869,9 +869,20 @@ body {
       <h1 class="page-h1">Announcements</h1>
       <div style="margin-top: 8px;">
         <div class="announcement-item">
-          <div class="ann-date">Oct 20</div>
+          <div class="ann-date">Oct 29</div>
           <div>
             <div class="ann-tag">New</div>
+            <div class="ann-title">Case Study — Monday's Class on Tallulah Pay</div>
+            <div class="ann-body">
+              <p style="margin-bottom:10px;">The case study for Monday is included in the coursework portion of the website. Apologies for getting it to you on a Thursday rather than right after class; I've cut it down to five questions to make up for the short runway.</p>
+              <p style="margin-bottom:10px;">It's a two-page partner email about a Georgia payments company six weeks out from an IPO, followed by the same reading materials from last session so everything is in one packet. Nothing to write or turn in — come ready to discuss the five questions and to cite the provision that decides each one. We'll work through them at the start of class.</p>
+              <p>See you Monday.</p>
+            </div>
+          </div>
+        </div>
+        <div class="announcement-item">
+          <div class="ann-date">Oct 20</div>
+          <div>
             <div class="ann-title">Reading Packet — Monday's Class on Money Transmission</div>
             <div class="ann-body">
               <p style="margin-bottom:10px;">The reading packet for Monday's session on money transmission has been emailed and posted on this site. It runs about 33 pages and has two halves.</p>
@@ -963,8 +974,8 @@ const sessions = [
   { n:6,  date:'Mon, Oct 5',  status:'previous', title:'Card Networks I — The Durbin Amendment',       summary:'The four-party card model, interchange economics, and the Durbin Amendment to Dodd-Frank. How price controls on debit interchange reshaped the card market, and the ongoing litigation around credit card network fees.', assignment:{ title:'Case Study — The Durbin Amendment', meta:'Complete before class', url:'/materials/session-06/case-study-durbin-amendment.pdf', materials:[ { title:'Can Banks Skirt Interchange Caps by Owning a Debit Network?', meta:'American Banker · PDF', url:'/materials/session-06/reading-american-banker-interchange-caps.pdf' }, { title:'Fiserv Becomes First MALPB to Process Transactions', meta:'Dept. of Banking and Finance · PDF', url:'/materials/session-06/reading-fiserv-malpb.pdf' } ] } },
   { n:7,  date:'Mon, Oct 12', status:'previous', title:'Card Networks II — The Durbin Amendment, Continued', summary:'Continued work on the card network regulatory framework and the Durbin Amendment. See Session 6 for the case study and reading materials.', note:'We continued working through the Session 6 case study and materials. See <strong>Session 6 — Card Networks I</strong> for the case study and readings.' },
   { n:8,  date:'Mon, Oct 19', status:'previous', title:'Who Regulates Whom — Federal Charters, State Licensing & Fintech Navigation', summary:'The dual banking system and the tension between federal charters and state money transmission licensing. How fintechs navigate the regulatory perimeter — bank partnerships, charter applications, and the patchwork of state licensing regimes.', presentation:{ url:'/materials/session-08/presentation.pdf' } },
-  { n:9,  date:'Mon, Oct 26', status:'current',  title:'Money Transmission Licensing',                  summary:'State-by-state money transmission licensing and the three-layer framework: state licensing requirements, the federal criminal prohibition under 18 U.S.C. § 1960, and FinCEN registration under the Bank Secrecy Act. The PayPal origin story — how New York and Louisiana reached different conclusions about the same product in 2000–2002, what the company changed, and why FinCEN registration did not solve the state licensing problem. Statutory work on the CSBS Model Money Transmission Modernization Act.', readings:[ { title:'Reading Packet — Money Transmission', url:'/materials/session-09/reading-packet.pdf' } ] },
-  { n:10, date:'Mon, Nov 2',  status:'upcoming', title:'Marketplace Lending & BNPL',                   summary:'The true-lender doctrine, the Madden decision, and the evolving bank-partnership credit market. Buy Now Pay Later products — how they work, whether Reg Z applies, and what CFPB guidance and proposed rules say about them.' },
+  { n:9,  date:'Mon, Oct 26', status:'previous', title:'Money Transmission Licensing',                  summary:'State-by-state money transmission licensing and the three-layer framework: state licensing requirements, the federal criminal prohibition under 18 U.S.C. § 1960, and FinCEN registration under the Bank Secrecy Act. The PayPal origin story — how New York and Louisiana reached different conclusions about the same product in 2000–2002, what the company changed, and why FinCEN registration did not solve the state licensing problem. Statutory work on the CSBS Model Money Transmission Modernization Act.', presentation:{ url:'/materials/session-09/presentation.pdf' }, readings:[ { title:'Reading Packet — Money Transmission', url:'/materials/session-09/reading-packet.pdf' } ] },
+  { n:10, date:'Mon, Nov 2',  status:'current',  title:'Money Transmission — The Tallulah Pay Case Study', summary:'We put the Session 9 framework to work on a client problem. Tallulah Pay, a Georgia payments app for music venues and touring acts, is preparing for an IPO, and its CFO says FinCEN registration means the company has "been fine." We test that claim by walking each flow of money through the model act — ticket proceeds, wallet balances, prepaid Tour Passes, and the company\'s use of customer funds for its own payroll — and asking where 18 U.S.C. § 1960 and FinCEN registration leave a company licensed in only one of the 41 states where it operates.', assignment:{ title:'Case Study — Tallulah Pay', meta:'Read and prepare to discuss · nothing to turn in', url:'/materials/session-10/case-study-tallulah-pay.pdf', materials:[] } },
   { n:11, date:'Mon, Nov 9',  status:'upcoming', title:'AML, BSA & Sanctions Compliance',              summary:'Bank Secrecy Act obligations, FinCEN rules, and OFAC sanctions programs as applied to payment companies. What a compliance program actually looks like — policies, procedures, transaction monitoring, and the cost of getting it wrong.' },
   { n:12, date:'Mon, Nov 16', status:'upcoming', title:'Crypto, Digital Assets & UCC Article 12',      summary:'The legal status of digital assets under newly enacted UCC Article 12. The SEC vs. CFTC jurisdictional dispute. Stablecoin frameworks and pending federal legislation. How existing payments law maps — and doesn\'t map — onto blockchain-based systems.' },
   { n:13, date:'Mon, Nov 23', status:'upcoming', title:'Synthesis & Regulatory Practice',              summary:'We step back from individual frameworks to look at the whole. How do you advise a client launching a new payments product? What does a regulatory risk assessment look like in practice? We close with a discussion of what it means to practice in this space — and where it\'s heading.' },
